@@ -1,8 +1,20 @@
 import '../styles/globals.css'
-// import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import 'react-toastify/dist/ReactToastify.css';
 
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import Navbar from '../components/Navbar'; // requires a loader
+import Footer from '../components/Footer'; // requires a loader
+import { SessionProvider } from "next-auth/react"
+
+export default function MyApp({
+  Component,
+  pageProps: { session, ...pageProps },
+}) {
+  return (
+    <SessionProvider session={session}>
+      {/* <Navbar /> */}
+      <Component {...pageProps} />
+      {/* <Footer /> */}
+    </SessionProvider>
+  )
 }
-
-export default MyApp
